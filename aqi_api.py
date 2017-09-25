@@ -1,5 +1,3 @@
-#TODO build an api get request for the following website: http://aqicn.org/api/
-
 import requests
 from api_keys import AQI_TOKEN, LATLONG
 
