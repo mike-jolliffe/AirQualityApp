@@ -2,14 +2,17 @@ import aqi_api
 from aqi_api import AirQualityReport
 from flask import Flask, make_response, Response, request, render_template
 from twilio.rest import Client
+import os
 
+TWILIO_ACCOUNT_SID = os.environ['TWILIO_ACCOUNT_SID']
+TWILIO_AUTH_TOKEN = os.environ['TWILIO_AUTH_TOKEN']
+
+AQI_TOKEN = os.environ['AQI_TOKEN']
+LATLONG = os.environ['LATLONG']
 
 
 client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 app = Flask(__name__)
-
-# TODO Build Procfile and Requirements.txt
-# TODO Deploy to Heroku
 
 @app.route('/inbound_sms', methods=['POST'])
 def inbound_sms():
