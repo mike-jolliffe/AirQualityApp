@@ -3,6 +3,8 @@ from aqi_api import AirQualityReport
 from flask import Flask, make_response, Response, request, render_template
 from twilio.rest import Client
 
+
+
 client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 app = Flask(__name__)
 
