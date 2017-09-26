@@ -20,7 +20,7 @@ def inbound_sms():
     from_num = request.form['From']
     to_num = request.form['To']
 
-    client.messages.create(to=from_num, from_=to_num, url=None)#TODO put webapp URL here)
+    client.messages.create(to=from_num, from_=to_num, url='https://pdx-air-quality-app.herokuapp.com/outbound_sms')
 
     return str(response)
 
