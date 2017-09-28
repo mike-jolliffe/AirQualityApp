@@ -1,6 +1,6 @@
 import aqi_api
 from aqi_api import AirQualityReport
-from flask import Flask, make_response, Response, request, render_template
+from flask import Flask, make_response, Response, request, redirect, url_for
 from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
 import os
@@ -19,13 +19,16 @@ app = Flask(__name__)
 def inbound_sms():
     # Create a quick response
     response = MessagingResponse()
-    response.message(f"Checking {request.form['Body']} now. Just a sec...")
 
     # Grab phone numbers
     from_num = request.form['From']
     to_num = request.form['To']
 
-    client.messages.create(to=from_num, from_=to_num, url='https://pdx-air-quality-app.herokuapp.com/outbound_sms')
+    client.messages.create(to=from_num, from_=to_num,
+                           body="Checking air quality for your location now. Just a sec...")
+
+    response_body = redirect(url_for('outbound_sms'))
+    response.message(response_body)
 
     return str(response)
 
