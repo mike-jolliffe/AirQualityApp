@@ -2,6 +2,7 @@ import aqi_api
 from aqi_api import AirQualityReport
 from flask import Flask, make_response, Response, request, render_template
 from twilio.rest import Client
+from twilio.twiml.messaging_response import MessagingResponse
 import os
 
 TWILIO_ACCOUNT_SID = os.environ['TWILIO_ACCOUNT_SID']
@@ -14,7 +15,7 @@ LATLONG = os.environ['LATLONG']
 client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 app = Flask(__name__)
 
-@app.route('/inbound_sms', methods=['POST'])
+@app.route('/inbound_sms', methods=['GET', 'POST'])
 def inbound_sms():
     # Create a quick response
     response = MessagingResponse()
