@@ -26,20 +26,14 @@ def inbound_sms():
 
     # Send a quick follow-up message so user knows we're working on it
     client.messages.create(to=from_num, from_=to_num,
-                           body="Checking air quality for your location now. Just a sec...")
+                           body="Checking air quality for your location. Just a sec...")
 
-    # Get air quality through redirect
-    response_body = str(redirect(url_for('outbound_sms')).get_data())
-    response.message(response_body)
-
-    return str(response)
-
-@app.route('/outbound_sms', methods=['GET', 'POST'])
-def outbound_sms():
     # Hit Air Quality API and return results
     report = AirQualityReport()
     air_quality = report.build_aq_report(report.get_aq_data())
-    return air_quality
+
+    client.messages.create(to=from_num, from_=to_num,
+                           body=air_quality)
 
 if __name__ == '__main__':
     app.run(debug=True)
