@@ -1,5 +1,5 @@
 import requests
-from api_keys import AQI_TOKEN, LATLONG
+#from api_keys import AQI_TOKEN, LATLONG
 
 class AirQualityReport:
     def __init__(self):
