@@ -29,7 +29,7 @@ def inbound_sms():
                            body="Checking air quality for your location now. Just a sec...")
 
     # Get air quality through redirect
-    response_body = redirect(url_for('outbound_sms'))
+    response_body = str(redirect(url_for('outbound_sms')))
     response.message(response_body)
 
     return str(response)
