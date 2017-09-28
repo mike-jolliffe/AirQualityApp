@@ -1,5 +1,7 @@
 import requests
-#from api_keys import AQI_TOKEN, LATLONG
+
+AQI_TOKEN = os.environ['AQI_TOKEN']
+LATLONG = os.environ['LATLONG']
 
 class AirQualityReport:
     def __init__(self):
@@ -17,7 +19,7 @@ class AirQualityReport:
     def get_aq_data(self):
         '''Sends a get request to aqicn API'''
         params = {
-                    'token': AQI_TOKEN, #TODO get api token, store in gitignore file
+                    'token': AQI_TOKEN,
                     'latlong': LATLONG
         }
 
