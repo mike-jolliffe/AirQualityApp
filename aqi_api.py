@@ -42,6 +42,3 @@ class AirQualityReport:
 if __name__ == '__main__':
     report = AirQualityReport()
     print(report.build_aq_report(report.get_aq_data()))
-
-    #'feed/:city/?token=:token'
-    #http://api.waqi.info/feed/shanghai/?token=demo

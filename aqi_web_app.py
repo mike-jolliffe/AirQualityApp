@@ -1,8 +1,7 @@
 import aqi_api
 from aqi_api import AirQualityReport
-from flask import Flask, make_response, Response, request, redirect, url_for
+from flask import Flask, make_response, Response, request
 from twilio.rest import Client
-from twilio.twiml.messaging_response import MessagingResponse
 import os
 
 TWILIO_ACCOUNT_SID = os.environ['TWILIO_ACCOUNT_SID']
@@ -13,8 +12,6 @@ app = Flask(__name__)
 
 @app.route('/inbound_sms', methods=['GET', 'POST'])
 def inbound_sms():
-    # Create a quick response
-    response = MessagingResponse()
 
     # Grab phone numbers
     from_num = request.form['From']
@@ -28,6 +25,7 @@ def inbound_sms():
     report = AirQualityReport()
     air_quality = report.build_aq_report(report.get_aq_data())
 
+    # Send info on current air quality
     client.messages.create(to=from_num, from_=to_num,
                            body=air_quality)
 
