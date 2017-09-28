@@ -1,4 +1,6 @@
+import os
 import requests
+
 
 AQI_TOKEN = os.environ['AQI_TOKEN']
 LATLONG = os.environ['LATLONG']
